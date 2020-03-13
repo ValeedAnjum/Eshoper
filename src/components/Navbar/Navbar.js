@@ -26,7 +26,7 @@ const Navbar = () => {
                                     </Link>
                                 </li>
                                 <li className="dropdown">
-                                    <a href="#nourl">Shop<i className="fa fa-angle-down"></i>
+                                    <a href="#nourl" onClick={e => e.preventDefault()}>Shop<i className="fa fa-angle-down"></i>
                                     </a>
                                     <ul role="menu" className="sub-menu">
                                         <li>

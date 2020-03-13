@@ -42,7 +42,6 @@ const Order = ({cartItems,incrementitemqun,decrementitemqun,deleteitem,total}) =
 };
 
 const mapState = state => {
-    // console.log(state.cart.cartItems);
     return {
         cartItems:state.cart.cartItems,
         total:state.cart.total

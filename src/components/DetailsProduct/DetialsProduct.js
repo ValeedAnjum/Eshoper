@@ -1,7 +1,4 @@
 import React,{Component} from 'react';
-import Category from '../Sidebar/Category';
-import Brand from '../Sidebar/Brand';
-import Price from '../Sidebar/Price';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
@@ -19,21 +16,11 @@ class DetialsProduct extends Component {
        })
 
     }
-    goToProductPage = () => {
-        this.props.history.push('/');
-    }
     render() {
         const {AddToCart,cartitemskeys} = this.props;
         return (
             <div className="container DetialsProduct">
             <div className="row">
-                {/* <div className="col-sm-3">
-                    <div className="left-sidebar">
-                        <Category searchByCatagory={this.goToProductPage}/>
-                        <Brand/>
-                        <Price/>
-                    </div>
-                </div> */}
                 <div className="col-sm-12">
                     {
                         (this.state.detailsOfItem === null) ? <DetailsLoadingPlaceholder/>:
@@ -50,7 +37,6 @@ class DetialsProduct extends Component {
 }
 
 const mapState = state => {
-    // console.log(state.cart.cartItems);
     return {
         details:state.items.detailOfItem,
         cartitemskeys:state.cart.cartItemsKeys

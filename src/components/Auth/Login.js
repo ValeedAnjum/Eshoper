@@ -16,16 +16,6 @@ const Login = (props) => {
     return (
         <div className="login-form">
             <h2>Login to your account</h2>
-            {/* <form action="#">
-                <input type="text" placeholder="Name"/>
-                <input type="email" placeholder="Email Address"/>
-                <span>
-                    <input type="checkbox" className="checkbox"/>
-                    Keep me signed in
-                </span>
-                <button type="submit" className="btn btn-default" onClick={() => login('a')}>Login</button>
-            </form> */}
-
             <form onSubmit={props.handleSubmit(submitVal)}>
                 <Field name="email" component={Textinput} type="email" placeholder="Email Address"/>
                 <Field name="password" component={Textinput} type="password" placeholder="Password"/>

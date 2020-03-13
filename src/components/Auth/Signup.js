@@ -1,5 +1,5 @@
 import React from 'react';
-import {combineValidators,isRequired,hasLengthBetween,composeValidators,hasLengthGreaterThan} from 'revalidate';
+import {combineValidators,isRequired} from 'revalidate';
 import {reduxForm,Field} from 'redux-form';
 import {connect} from 'react-redux';
 import TextInput from '../Form/Common/Textinput';
@@ -16,12 +16,6 @@ const Signup = (props) => {
     return (
         <div className="signup-form">
             <h2>New User Signup!</h2>
-            {/* <form action="#">
-                <input type="text" placeholder="Name"/>
-                <input type="email" placeholder="Email Address"/>
-                <input type="password" placeholder="Password"/>
-                <button type="submit" className="btn btn-default">Signup</button>
-            </form> */}
             <form onSubmit={props.handleSubmit(submit)}>
                 <Field name="name" component={TextInput} type="text" placeholder="Name" />
                 <Field name="email" component={TextInput} type="email" placeholder="Email" />

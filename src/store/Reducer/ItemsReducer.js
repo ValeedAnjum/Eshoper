@@ -1,3 +1,4 @@
+import * as UserAct from '../Constants/UserConstants';
 const initState = {
     items:[],
     detailOfItem:null,
@@ -8,23 +9,23 @@ const initState = {
 
 export const ItemReducer = (state = initState,action) => {
     switch (action.type) {
-        case 'ItemsFetchStart':
+        case UserAct.ITEMS_FETCH_START:
             return {...state,loading:true}
-        case 'ItemsFetchEnd':
+        case UserAct.ITEMS_FETCH_END:
             return {...state,items:action.payload,loading:false}
-        case 'ItemsEmpty':
+        case UserAct.ITEMS_FETCH_EMPTY:
             return {...state,loading:false}
         case 'ItemsReset':
             return {...state,items:action.payload}
-        case 'DetailItemFetchStart':
+        case UserAct.DETAIL_ITEM_FETCH_START:
             return {...state,loading:true}
-        case 'DetailItemFetchEnd':
+        case UserAct.DETAIL_ITEM_FETCH_END:
             return {...state,detailOfItem:action.payload,loading:false}
-        case 'DetailItemFetchError':
+        case UserAct.DETAIL_ITEM_FETCH_ERROR:
             return {...state,loading:false,loadingError:action.payload}
-        case 'SearchByNameSet':
+        case UserAct.SEARCH_BY_NAME_SET:
             return {...state,searchByName:action.payload}
-        case 'SearchByNameReSet':
+        case UserAct.SEARCH_BY_NAME_RESET:
                 return {...state,searchByName:action.payload}
         default:
             return state;

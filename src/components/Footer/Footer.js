@@ -180,7 +180,7 @@ const Footer = () => {
                                 <h2>About Shopper</h2>
                                 <form action="#" className="searchform">
                                     <input type="text" placeholder="Your email address"/>
-                                    <button type="submit" className="btn btn-default">
+                                    <button type="submit" className="btn btn-default" onClick={e => e.preventDefault()}>
                                         <i className="fa fa-arrow-circle-o-right"></i>
                                     </button>
                                     <p>Get the most recent updates from

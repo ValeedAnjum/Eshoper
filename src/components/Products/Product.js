@@ -1,12 +1,11 @@
 import React,{Component} from 'react';
 import Category from '../Sidebar/Category';
 import Brand from '../Sidebar/Brand';
-import Price from '../Sidebar/Price';
 import SingleProduct from './SingleProduct';
 import {withRouter} from 'react-router-dom';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
-import { loadNextItems, addRandomDataToFirestore, searchByCatagory } from '../../store/Action/UserActions';
+import { loadNextItems, searchByCatagory } from '../../store/Action/UserActions';
 import ProductLoadingPlaceholder from './ProductLoadingPlaceholder';
 
 class Product extends Component {
@@ -65,14 +64,13 @@ class Product extends Component {
     goToProductDetial = id => {
         this.props.history.push('/details/'+id);
     }
-    searchByCatagoryL = async (name) => {
+    searchByCatagoryLocal = async (name) => {
         const previousItems = [...this.state.loadedItems];
         const next = await this.props.SearchByCatagory(name);
         if(next && next.docs && next.docs.length < 1){
             this.setState({
                 moreItems:false,
-                morePrevItems:false,
-                moreItems:false
+                morePrevItems:false
             })
         }else{
             this.setState({
@@ -89,14 +87,14 @@ class Product extends Component {
     }
     render() {
         const {loadedItems,moreItems,morePrevItems} = this.state;
-        const {loading,addData} = this.props;
+        const {loading} = this.props;
         return (
-            <div className="container Product" onClick={addData}>
+            <div className="container Product">
             <div className="row">
                 <div className="col-sm-3">
                     <div className="left-sidebar">
-                        <Category searchByCatagory={this.searchByCatagoryL}/>
-                        <Brand searchByCatagory={this.searchByCatagoryL}/>
+                        <Category searchByCatagory={this.searchByCatagoryLocal}/>
+                        <Brand searchByCatagory={this.searchByCatagoryLocal}/>
                     </div>
                 </div>
                 <div className="col-sm-9">
@@ -158,7 +156,6 @@ const mapDispatch = dispatch => {
     return {
         LoadNextItems:(lastItem) => dispatch(loadNextItems(lastItem)),
         PreviousItems:resetingItems => dispatch({type:'ItemsReset',payload:resetingItems}),
-        addData:() => dispatch(addRandomDataToFirestore()),
         SearchByCatagory:name => dispatch(searchByCatagory(name))
     }
 }

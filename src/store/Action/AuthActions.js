@@ -1,18 +1,19 @@
+import {ASYNCHRONOUS_START,ASYNCHRONOUS_SUCCESS,ASYNCHRONOUS_ERROR} from '../Constants/AuthConstants';
+
 export const Login = cred => {
     return (dispatch,getState,{getFirebase,getFirestore}) => {
         const {email,password} = cred;
         const firebase = getFirebase();
-        dispatch({type:'AsynchronousStart'});
+        dispatch({type:ASYNCHRONOUS_START});
         firebase.auth().signInWithEmailAndPassword(
             email,
             password
         ).then(() => {
-            console.log('Success');
-            dispatch({type:'AsynchronousSuccess'});
+            dispatch({type:ASYNCHRONOUS_SUCCESS});
         }).catch(err => {
             console.log(err.message);
             alert(err.message);
-            dispatch({type:'AsynchronousError',payload:err.message});
+            dispatch({type:ASYNCHRONOUS_ERROR,payload:err.message});
         })
     }
 }
@@ -22,7 +23,7 @@ export const Register = cred => {
         const {name,email,password} = cred;
         const firebase = getFirebase();
         const firestore = getFirestore();
-        dispatch({type:'AsynchronousStart'});
+        dispatch({type:ASYNCHRONOUS_START});
         firebase.auth().createUserWithEmailAndPassword(
             email,password
         ).then(res => {
@@ -31,10 +32,10 @@ export const Register = cred => {
             })
         }).then(() => {
             console.log('Success');
-            dispatch({type:'AsynchronousSuccess'});
+            dispatch({type:ASYNCHRONOUS_SUCCESS});
         }).catch(err => {
             alert(err.message);
-            dispatch({type:'AsynchronousError'});
+            dispatch({type:ASYNCHRONOUS_ERROR});
         })
     }
 }
@@ -45,7 +46,7 @@ export const Logout = () => {
         firebase.auth().signOut().then(() => {
             console.log('Success');
         }).catch(err => {
-            console.log('Error');
+            console.log('Error',err.message);
         })
     }
 }

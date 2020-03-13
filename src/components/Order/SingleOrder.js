@@ -22,7 +22,7 @@ const SingleOrder = ({item,incrementitemqun,decrementitemqun,deleteitem}) => {
                         +
                     </a>
                     <input
-                        onChange={() => {console.log('S')}}
+                        onChange={() => {return}}
                         className="cart_quantity_input"
                         type="text"
                         name="quantity"
