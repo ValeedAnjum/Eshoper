@@ -16,7 +16,7 @@ const Footer = () => {
                         <div className="col-sm-7">
                             <div className="col-sm-3">
                                 <div className="video-gallery text-center">
-                                    <a href="#nourl">
+                                    <a href="#nourl" onClick={e => e.preventDefault()}>
                                         <div className="iframe-img">
                                             <img src="images/home/iframe1.png" alt=""/>
                                         </div>
@@ -31,7 +31,7 @@ const Footer = () => {
 
                             <div className="col-sm-3">
                                 <div className="video-gallery text-center">
-                                    <a href="#nourl">
+                                    <a href="#nourl" onClick={e => e.preventDefault()}>
                                         <div className="iframe-img">
                                             <img src="images/home/iframe2.png" alt=""/>
                                         </div>
@@ -46,7 +46,7 @@ const Footer = () => {
 
                             <div className="col-sm-3">
                                 <div className="video-gallery text-center">
-                                    <a href="#nourl">
+                                    <a href="#nourl" onClick={e => e.preventDefault()}>
                                         <div className="iframe-img">
                                             <img src="images/home/iframe3.png" alt=""/>
                                         </div>
@@ -61,7 +61,7 @@ const Footer = () => {
 
                             <div className="col-sm-3">
                                 <div className="video-gallery text-center">
-                                    <a href="#nourl">
+                                    <a href="#nourl" onClick={e => e.preventDefault()}>
                                         <div className="iframe-img">
                                             <img src="images/home/iframe4.png" alt=""/>
                                         </div>
@@ -92,19 +92,19 @@ const Footer = () => {
                                 <h2>Service</h2>
                                 <ul className="nav nav-pills nav-stacked">
                                     <li>
-                                        <a href="#nourl">Online Help</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Online Help</a>
                                     </li>
                                     <li>
-                                        <a href="#nourl">Contact Us</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Contact Us</a>
                                     </li>
                                     <li>
-                                        <a href="#nourl">Order Status</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Order Status</a>
                                     </li>
                                     <li>
-                                        <a href="#nourl">Change Location</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Change Location</a>
                                     </li>
                                     <li>
-                                        <a href="#nourl">FAQ’s</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>FAQ’s</a>
                                     </li>
                                 </ul>
                             </div>
@@ -114,19 +114,19 @@ const Footer = () => {
                                 <h2>Quock Shop</h2>
                                 <ul className="nav nav-pills nav-stacked">
                                     <li>
-                                        <a href="#nourl">T-Shirt</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>T-Shirt</a>
                                     </li>
                                     <li>
-                                        <a href="#nourl">Mens</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Mens</a>
                                     </li>
                                     <li>
-                                        <a href="#nourl">Womens</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Womens</a>
                                     </li>
                                     <li>
-                                        <a href="#nourl">Gift Cards</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Gift Cards</a>
                                     </li>
                                     <li>
-                                        <a href="#nourl">Shoes</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Shoes</a>
                                     </li>
                                 </ul>
                             </div>
@@ -136,19 +136,19 @@ const Footer = () => {
                                 <h2>Policies</h2>
                                 <ul className="nav nav-pills nav-stacked">
                                     <li>
-                                        <a href="#nourl">Terms of Use</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Terms of Use</a>
                                     </li>
                                     <li>
-                                        <a href="#nourl">Privecy Policy</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Privecy Policy</a>
                                     </li>
                                     <li>
-                                        <a href="#nourl">Refund Policy</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Refund Policy</a>
                                     </li>
                                     <li>
-                                        <a href="#nourl">Billing System</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Billing System</a>
                                     </li>
                                     <li>
-                                        <a href="#nourl">Ticket System</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Ticket System</a>
                                     </li>
                                 </ul>
                             </div>
@@ -158,19 +158,19 @@ const Footer = () => {
                                 <h2>About Shopper</h2>
                                 <ul className="nav nav-pills nav-stacked">
                                     <li>
-                                        <a href="#nourl">Company Information</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Company Information</a>
                                     </li>
                                     <li>
-                                        <a href="#nourl">Careers</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Careers</a>
                                     </li>
                                     <li>
-                                        <a href="#nourl">Store Location</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Store Location</a>
                                     </li>
                                     <li>
-                                        <a href="#nourl">Affillate Program</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Affillate Program</a>
                                     </li>
                                     <li>
-                                        <a href="#nourl">Copyright</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Copyright</a>
                                     </li>
                                 </ul>
                             </div>
@@ -199,7 +199,7 @@ const Footer = () => {
                         <p className="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
                         <p className="pull-right">Designed by
                             <span>
-                                <a target="_blank" href="http://www.themeum.com">Themeum</a>
+                                <a target="_blank" rel="noopener noreferrer" href="http://www.themeum.com">Themeum</a>
                             </span>
                         </p>
                     </div>

@@ -33,13 +33,13 @@ const Price = () => {
                             className="span2"
                             value=""
                             data-slider-min="0"
-                            data-slider-max="600"
+                            data-slider-max="1000"
                             data-slider-step="5"
                             onChange={() => alert("Haha")}
                             data-slider-value="[250,450]"
                             id="sl2"/></div><br/>
                     <b className="pull-left">$ 0</b>
-                    <b className="pull-right">$ 600</b>
+                    <b className="pull-right">$ 1000</b>
                 </div>
             </div>
         </React.Fragment>

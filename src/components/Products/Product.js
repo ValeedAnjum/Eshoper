@@ -1,18 +1,102 @@
-import React,{useState} from 'react';
-import Category from './SideBar/Category';
-import Brand from './SideBar/Brand';
-import Price from './SideBar/Price';
+import React,{Component} from 'react';
+import Category from '../Sidebar/Category';
+import Brand from '../Sidebar/Brand';
+import Price from '../Sidebar/Price';
 import SingleProduct from './SingleProduct';
-const Product = () => {
-    const [items] = useState([1,2,3,4,5,6]);
-    return (
-        <div className="container">
+import {withRouter} from 'react-router-dom';
+import {compose} from 'redux';
+import {connect} from 'react-redux';
+import { loadNextItems, addRandomDataToFirestore, searchByCatagory } from '../../store/Action/UserActions';
+import ProductLoadingPlaceholder from './ProductLoadingPlaceholder';
+
+class Product extends Component {
+    state = {
+        loadedItems:[],
+        moreItems:false,
+        previousItems:[],
+        morePrevItems:false,
+    }
+    async componentDidMount(){
+        let next = await this.props.LoadNextItems();
+        if(next && next.docs && next.docs.length >= 1){
+            this.setState({
+                loadedItems:this.props.items,
+                moreItems:true
+            })
+        }
+    }
+    loadNextItem = async () => {
+        const {items} = this.props;
+        const lastItem = items && items[items.length-1];
+        const previousItems = [...this.state.loadedItems];
+        const next = await this.props.LoadNextItems(lastItem);
+        if(next && next.docs && next.docs.length < 1){
+            this.setState({
+                moreItems:false,
+                morePrevItems:true,
+            })
+        }else{
+            this.setState({
+                loadedItems:[...this.props.items],
+                previousItems:[...this.state.previousItems,...previousItems],
+                morePrevItems:true,
+            })
+        }
+    }
+    loadPrevItem = async (e) => {
+        e.preventDefault();
+        let copyOfPreviosItems = [...this.state.previousItems];
+        let previousItemsToDisplay = [];
+        let lengthOfPrevItems = copyOfPreviosItems.length;
+        for(let i = 0;i<6;i++){
+            previousItemsToDisplay.push({...copyOfPreviosItems[lengthOfPrevItems-6+i]});
+        }
+        copyOfPreviosItems.splice(copyOfPreviosItems.length-6,6);
+        this.props.PreviousItems(previousItemsToDisplay);
+        this.setState({
+            loadedItems:[...previousItemsToDisplay],
+            previousItems:[...copyOfPreviosItems],
+            moreItems:true
+        })
+        if(copyOfPreviosItems.length <= 1) {
+            this.setState({morePrevItems:false});
+        }
+    }
+    goToProductDetial = id => {
+        this.props.history.push('/details/'+id);
+    }
+    searchByCatagoryL = async (name) => {
+        const previousItems = [...this.state.loadedItems];
+        const next = await this.props.SearchByCatagory(name);
+        if(next && next.docs && next.docs.length < 1){
+            this.setState({
+                moreItems:false,
+                morePrevItems:false,
+                moreItems:false
+            })
+        }else{
+            this.setState({
+                loadedItems:[...this.props.items],
+                previousItems:[...this.state.previousItems,...previousItems],
+                morePrevItems:false,
+                moreItems:true
+            })
+        }
+    }
+    nextBtn = (e) => {
+        e.preventDefault();
+        this.loadNextItem(this.state.brandNameForSearching);
+    }
+    render() {
+        const {loadedItems,moreItems,morePrevItems} = this.state;
+        const {loading,addData} = this.props;
+        return (
+            <div className="container Product" onClick={addData}>
             <div className="row">
                 <div className="col-sm-3">
                     <div className="left-sidebar">
-                        <Category />
-                        <Brand />
-                        <Price />
+                        <Category searchByCatagory={this.searchByCatagoryL}/>
+                        <Brand searchByCatagory={this.searchByCatagoryL}/>
                     </div>
                 </div>
                 <div className="col-sm-9">
@@ -20,19 +104,66 @@ const Product = () => {
                         <h2 className="title text-center">
                             feature items
                         </h2>
+                        {/* loding effect */}
                         {
-                            items.map((item,index) => {
+                        loading &&
+                        <div className="ph-item">
+                        {
+                            [1,2,3,4,5,6].map((ele,index) => {
+                                return <ProductLoadingPlaceholder key={index} />
+                            })
+                        }
+                        </div>
+                        }
+                        {/* loding effect end */}
+                        {/* loading items */}
+                        {
+                            
+                            loadedItems && !loading && loadedItems.map((item,index) => {
                                 return (
-                                    <SingleProduct item={item} key={index} />
+                                    <SingleProduct 
+                                    item={item} 
+                                    key={index}
+                                    goToProductDetial={() => this.goToProductDetial(item.id)}/>
                                 );
                             })
                         }
+                        {/* loading items end */}
                     </div>
+                        <div className="btnCon" style={{textAlign:'center'}}>
+                        {
+                            morePrevItems &&
+                            <a type="button" href="#next" className="btn btn-default get" onClick={this.loadPrevItem}>Prev</a>
+                        }
+                        {
+                            moreItems && 
+                            <a  href="#prev" type="button" className="btn btn-default get" 
+                            onClick={this.nextBtn}>Next</a> 
+                        }
+                        </div>                   
                 </div>
-
             </div>
         </div>
-    );
-};
+        )
+    }
+}
 
-export default Product;
+const mapState = state => {
+    return {
+        items:state.items.items,
+        loading:state.items.loading
+    }
+}
+const mapDispatch = dispatch => {
+    return {
+        LoadNextItems:(lastItem) => dispatch(loadNextItems(lastItem)),
+        PreviousItems:resetingItems => dispatch({type:'ItemsReset',payload:resetingItems}),
+        addData:() => dispatch(addRandomDataToFirestore()),
+        SearchByCatagory:name => dispatch(searchByCatagory(name))
+    }
+}
+
+export default compose(
+    connect(mapState,mapDispatch),
+    withRouter
+)(Product);

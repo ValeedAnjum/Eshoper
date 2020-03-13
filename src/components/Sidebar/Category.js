@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Category = () => {
+const Category = ({searchByCatagory}) => {
+    const SearchByCatagory = e => {
+        e.preventDefault();
+        searchByCatagory(e.target.innerHTML.toString());
+    }
     return (
         <React.Fragment>
             <h2>category</h2>
@@ -24,22 +28,22 @@ const Category = () => {
                         <div className="panel-body">
                             <ul>
                                 <li>
-                                    <a href="#nourl">Nike
+                                    <a href="#nike" onClick={SearchByCatagory}>Nike
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#nourl">Under Armour
+                                    <a href="#nourl" onClick={SearchByCatagory}>Under Armour
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#nourl">Adidas
+                                    <a href="#nourl" onClick={SearchByCatagory}>Adidas
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#nourl">Puma</a>
+                                    <a href="#nourl" onClick={SearchByCatagory}>Puma</a>
                                 </li>
                                 <li>
-                                    <a href="#nourl">ASICS
+                                    <a href="#nourl" onClick={SearchByCatagory}>ASICS
                                     </a>
                                 </li>
                             </ul>
@@ -65,34 +69,34 @@ const Category = () => {
                         <div className="panel-body">
                             <ul>
                                 <li>
-                                    <a href="#nourl">Fendi</a>
+                                    <a href="#nourl" onClick={SearchByCatagory}>Fendi</a>
                                 </li>
                                 <li>
-                                    <a href="#nourl">Guess</a>
+                                    <a href="#nourl" onClick={SearchByCatagory}>Guess</a>
                                 </li>
                                 <li>
-                                    <a href="#nourl">Valentino</a>
+                                    <a href="#nourl" onClick={SearchByCatagory}>Valentino</a>
                                 </li>
                                 <li>
-                                    <a href="#nourl">Dior</a>
+                                    <a href="#nourl" onClick={SearchByCatagory}>Dior</a>
                                 </li>
                                 <li>
-                                    <a href="#nourl">Versace</a>
+                                    <a href="#nourl" onClick={SearchByCatagory}>Versace</a>
                                 </li>
                                 <li>
-                                    <a href="#nourl">Armani</a>
+                                    <a href="#nourl" onClick={SearchByCatagory}>Armani</a>
                                 </li>
                                 <li>
-                                    <a href="#nourl">Prada</a>
+                                    <a href="#nourl" onClick={SearchByCatagory}>Prada</a>
                                 </li>
                                 <li>
-                                    <a href="#nourl">Dolce and Gabbana</a>
+                                    <a href="#nourl" onClick={SearchByCatagory}>Dolce and Gabbana</a>
                                 </li>
                                 <li>
-                                    <a href="#nourl">Chanel</a>
+                                    <a href="#nourl" onClick={SearchByCatagory}>Chanel</a>
                                 </li>
                                 <li>
-                                    <a href="#nourl">Gucci</a>
+                                    <a href="#nourl" onClick={SearchByCatagory}>Gucci</a>
                                 </li>
                             </ul>
                         </div>
@@ -118,19 +122,19 @@ const Category = () => {
                         <div className="panel-body">
                             <ul>
                                 <li>
-                                    <a href="#nourl">Fendi</a>
+                                    <a href="#nourl" onClick={SearchByCatagory}>Fendi</a>
                                 </li>
                                 <li>
-                                    <a href="#nourl">Guess</a>
+                                    <a href="#nourl" onClick={SearchByCatagory}>Guess</a>
                                 </li>
                                 <li>
-                                    <a href="#nourl">Valentino</a>
+                                    <a href="#nourl" onClick={SearchByCatagory}>Valentino</a>
                                 </li>
                                 <li>
-                                    <a href="#nourl">Dior</a>
+                                    <a href="#nourl" onClick={SearchByCatagory}>Dior</a>
                                 </li>
                                 <li>
-                                    <a href="#nourl">Versace</a>
+                                    <a href="#nourl" onClick={SearchByCatagory}>Versace</a>
                                 </li>
                             </ul>
                         </div>
@@ -139,49 +143,49 @@ const Category = () => {
                 <div className="panel panel-default">
                     <div className="panel-heading">
                         <h4 className="panel-title">
-                            <a href="#nourl">Kids</a>
+                            <a href="#nourl" onClick={SearchByCatagory}>Kids</a>
                         </h4>
                     </div>
                 </div>
                 <div className="panel panel-default">
                     <div className="panel-heading">
                         <h4 className="panel-title">
-                            <a href="#nourl">Fashion</a>
+                            <a href="#nourl" onClick={SearchByCatagory}>Fashion</a>
                         </h4>
                     </div>
                 </div>
                 <div className="panel panel-default">
                     <div className="panel-heading">
                         <h4 className="panel-title">
-                            <a href="#nourl">Households</a>
+                            <a href="#nourl" onClick={SearchByCatagory}>Households</a>
                         </h4>
                     </div>
                 </div>
                 <div className="panel panel-default">
                     <div className="panel-heading">
                         <h4 className="panel-title">
-                            <a href="#nourl">Interiors</a>
+                            <a href="#nourl" onClick={SearchByCatagory}>Interiors</a>
                         </h4>
                     </div>
                 </div>
                 <div className="panel panel-default">
                     <div className="panel-heading">
                         <h4 className="panel-title">
-                            <a href="#nourl">Clothing</a>
+                            <a href="#nourl" onClick={SearchByCatagory}>Clothing</a>
                         </h4>
                     </div>
                 </div>
                 <div className="panel panel-default">
                     <div className="panel-heading">
                         <h4 className="panel-title">
-                            <a href="#nourl">Bags</a>
+                            <a href="#nourl" onClick={SearchByCatagory}>Bags</a>
                         </h4>
                     </div>
                 </div>
                 <div className="panel panel-default">
                     <div className="panel-heading">
                         <h4 className="panel-title">
-                            <a href="#nourl">Shoes</a>
+                            <a href="#nourl" onClick={SearchByCatagory}>Shoes</a>
                         </h4>
                     </div>
                 </div>

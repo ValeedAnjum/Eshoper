@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Link} from 'react-router-dom';
 const Navbar = () => {
     return (
         <div className="header-bottom">
@@ -21,29 +21,31 @@ const Navbar = () => {
                         <div className="mainmenu pull-left">
                             <ul className="nav navbar-nav collapse navbar-collapse">
                                 <li>
-                                    <a href="index.html" className="active">Home</a>
+                                    <Link to="/">
+                                        Home
+                                    </Link>
                                 </li>
                                 <li className="dropdown">
                                     <a href="#nourl">Shop<i className="fa fa-angle-down"></i>
                                     </a>
                                     <ul role="menu" className="sub-menu">
                                         <li>
-                                            <a href="shop.html">Products</a>
+                                            <Link to="/cart">
+                                                Cart
+                                            </Link>
                                         </li>
                                         <li>
-                                            <a href="product-details.html">Product Details</a>
-                                        </li>
-                                        <li>
-                                            <a href="cart.html">Cart</a>
-                                        </li>
-                                        <li>
-                                            <a href="login.html">Login</a>
+                                            <Link to="/auth">
+                                                Login
+                                            </Link>
                                         </li>
                                     </ul>
                                 </li>
                                 
                                 <li>
-                                    <a href="contact-us.html">Contact</a>
+                                    <Link to="/contact">
+                                        Contact
+                                    </Link>
                                 </li>
                             </ul>
                         </div>

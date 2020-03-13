@@ -1,13 +1,22 @@
 import React from 'react';
-
-const Usermenu = () => {
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import { Logout } from '../../store/Action/AuthActions';
+const Usermenu = ({name,logout}) => {
+    const authHandling = () => {
+        if(name){
+            logout();
+        }
+    }
     return (
         <div className="header-middle">
             <div className="container">
                 <div className="row">
                     <div className="col-md-4 clearfix">
                         <div className="logo pull-left">
-                            <a href="index.html"><img src="images/home/logo.png" alt=""/></a>
+                                <Link to="/cart">
+                                <img src="images/home/logo.png" alt=""/>
+                                </Link>
                         </div>
                         <div className="btn-group pull-right clearfix">
                             <div className="btn-group">
@@ -20,10 +29,10 @@ const Usermenu = () => {
                                 </button>
                                 <ul className="dropdown-menu">
                                     <li>
-                                        <a href="#nourl">Canada</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Canada</a>
                                     </li>
                                     <li>
-                                        <a href="#nourl">UK</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>UK</a>
                                     </li>
                                 </ul>
                             </div>
@@ -38,10 +47,10 @@ const Usermenu = () => {
                                 </button>
                                 <ul className="dropdown-menu">
                                     <li>
-                                        <a href="#nourl">Canadian Dollar</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Canadian Dollar</a>
                                     </li>
                                     <li>
-                                        <a href="#nourl">Pound</a>
+                                        <a href="#nourl" onClick={e => e.preventDefault()}>Pound</a>
                                     </li>
                                 </ul>
                             </div>
@@ -51,29 +60,29 @@ const Usermenu = () => {
                         <div className="shop-menu clearfix pull-right">
                             <ul className="nav navbar-nav">
                                 <li>
-                                    <a href="#nourl">
+                                    <Link to="/">
                                         <i className="fa fa-user"></i>
-                                        Account</a>
+                                        {
+                                            name ? name:"Account"
+                                        }
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#nourl">
-                                        <i className="fa fa-star"></i>
-                                        Wishlist</a>
-                                </li>
-                                <li>
-                                    <a href="checkout.html">
-                                        <i className="fa fa-crosshairs"></i>
-                                        Checkout</a>
-                                </li>
-                                <li>
-                                    <a href="cart.html">
+                                    <Link to="/cart">
                                         <i className="fa fa-shopping-cart"></i>
-                                        Cart</a>
+                                        Cart
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="login.html">
-                                        <i className="fa fa-lock"></i>
-                                        Login</a>
+                                    <Link to="/auth" onClick={authHandling}>
+                                        {
+                                            name ? null:<i className="fa fa-lock"></i>
+                                        }
+                                        {
+                                            name ? "Logout":"Login"
+                                        }
+                                        
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
@@ -84,4 +93,14 @@ const Usermenu = () => {
     );
 };
 
-export default Usermenu;
+const mapDispatch = dispatch => {
+    return {
+        logout:() => dispatch(Logout())
+    }
+}
+const mapState = state => {
+    return {
+        name:state.firebase.profile.name
+    }
+}
+export default connect(mapState,mapDispatch)(Usermenu);

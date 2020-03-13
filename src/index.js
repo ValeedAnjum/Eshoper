@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'placeholder-loading/dist/css/placeholder-loading.min.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {createStore,compose,applyMiddleware} from 'redux';
@@ -10,14 +11,14 @@ import {getFirestore,reduxFirestore} from 'redux-firestore';
 import {Provider} from 'react-redux';
 import {Reducer} from './store/Reducer/RootReducer';
 import config from './config/config';
-
+import Loader from './components/ModelManager/Loader/Loader';
 const store = createStore(Reducer,compose(
     applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})),
-    reactReduxFirebase(config,{attachAuthIsReady:true,useFirestoreForProfile:true,userProfile:'user'}),
+    reactReduxFirebase(config,{attachAuthIsReady:true,useFirestoreForProfile:true,userProfile:'users'}),
     reduxFirestore(config)
 ));
 
-ReactDOM.render(<h1>Loading</h1>, document.getElementById('root'));
+ReactDOM.render(<Loader/>, document.getElementById('root'));
 store.firebaseAuthIsReady.then(() => {
     ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById('root'));
     serviceWorker.unregister();
