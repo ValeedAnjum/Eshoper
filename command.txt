@@ -1,0 +1,1 @@
+npm install firebase react-redux react-router-dom redux redux-form react-router react-redux-firebase redux-firestore redux-thunk revalidate
