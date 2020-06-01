@@ -1,6 +1,6 @@
 # Eshoper
 Eshoper is a Free React E-Commerce Template
 
-# demo
+# Demo
 https://eshopper-5aded.firebaseapp.com
 
